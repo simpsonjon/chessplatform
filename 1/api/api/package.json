@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+      "express": "^4.16.3"
+    },
+    "devDependencies": {
+      "nyc": "^11.7.1",
+      "supertest": "^3.0.0",
+      "tape": "^4.9.0"
+    },
+    "scripts": {
+      "test": "nyc tape ./test/*"
+    }
+  }
