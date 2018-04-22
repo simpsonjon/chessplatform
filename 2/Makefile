@@ -29,11 +29,14 @@ build-test-chess: build-chess
 	docker build -t simpsonjon/chessplat:chess-test -f ./chess/Test.Dockerfile ./chess/
 build-test-auth: build-auth
 	docker build -t simpsonjon/chessplat:auth-test -f ./auth/Test.Dockerfile ./auth/
-
+build-test-integration: build
+	docker build -t simpsonjon/chessplat:integration-test -f ./integration/Dockerfile ./integration/
 build-test: build-test-api
 	build-test-auth
 	build-test-chess
 
+test-integration: clean
+	docker-compose -f ./integration.yml up
 test: build-test
 	docker run -it -p 3000:3000 simpsonjon/chessplat:api-test
 	docker run -it -p 8080:3000 simpsonjon/chessplat:auth-test
@@ -49,6 +52,7 @@ run: build
 	docker-compose -f ./app.yml up
 clean:
 	docker-compose -f ./app.yml rm -f
+	docker-compose -f ./integration.yml rm -f
 
 deps:
 	echo "  Dependencies: "
