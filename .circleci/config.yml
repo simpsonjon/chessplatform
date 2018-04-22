@@ -11,6 +11,7 @@ jobs:
       - image: circleci/node:8.11.1
     steps:
       - checkout
+      - run: pwd && ls
       - run: ~/project/2/make test
 
 workflows:
