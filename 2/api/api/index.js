@@ -4,8 +4,11 @@ var request = require('request')
 
 var response = 'Hello World!'
 
+app.get('/', function(req,res){
+  res.send(response)
+})
+
 app.get('/:id', function (req, res) {
-  var request = require('request');
   request('http://auth:3000/'+req.params.id, function (error, response, body) {
     console.log(response.body)
     res.send(response)
