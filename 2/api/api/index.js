@@ -11,7 +11,7 @@ app.get('/', function(req,res){
 app.get('/:id', function (req, res) {
   request('http://auth:3000/'+req.params.id, function (error, response, body) {
     console.log(response.body)
-    res.send(response)
+    res.json(JSON.parse(response.body))
   });
 })
 

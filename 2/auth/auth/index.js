@@ -8,11 +8,11 @@ app.get('/', function (req, res) {
 })
 
 app.get('/1', function (req, res) {
-  res.status(200).send(JSON.stringify({ authenticated: true }))
+  res.status(200).json({ authenticated: true })
 })
 
 app.get('/2', function (req, res) {
-  res.status(200).send(JSON.stringify({ authenticated: false }))
+  res.status(200).json({ authenticated: false })
 })
 
 var server = null
