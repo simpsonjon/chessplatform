@@ -6,15 +6,36 @@ jobs:
     steps:
       - checkout
       - run: docker-compose -f ~/project/2/app.yml build
-  test:
+  api-test:
     docker:
-      - image: circleci/classic:edge
-    steps:
+      - image: circleci/node:8.11.1
+    steps: 
       - checkout
-      - run: ~/project/2/make test
+      - run: make test-api ~/project/2/
+    requires:
+      - build
+  chess-test:
+    docker:
+      - image: circleci/node:8.11.1
+    steps: 
+      - checkout
+      - run: make test-chess ~/project/2/ 
+    requires:
+      - build
+  auth-test:
+    docker:
+      - image: circleci/node:8.11.1
+    steps: 
+      - checkout
+      - run: make test-auth ~/project/2/
+    requires:
+      - build
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - api-test
+      - chess-test
+      - auth-test
