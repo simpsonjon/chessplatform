@@ -9,37 +9,35 @@ jobs:
   api-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/
     steps: 
       - checkout
-      - run: cd 2/
+      - run: pwd && ls
       - run: make test-api
-    requires:
-      - build
   chess-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/
     steps: 
       - checkout
-      - run: make test-chess
-    requires:
-      - build
+      - run: pwd && ls
+      - run: make test-chess -C ./2/
   auth-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/
     steps: 
       - checkout
       - run: make test-auth
-    requires:
-      - build
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - api-test
-      - chess-test
-      - auth-test
+      - api-test:
+        requires:
+          - build
+      - chess-test:
+        requires:
+          - build
+      - auth-test:
+        requires:
+          - build
