@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/project/2/
     steps: 
       - checkout
-      - run: pwd && ls
+      - run: cd 2/
       - run: make test-api
     requires:
       - build
