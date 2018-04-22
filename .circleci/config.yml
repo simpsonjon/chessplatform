@@ -33,11 +33,11 @@ workflows:
     jobs:
       - build
       - api-test:
-        requires:
-          - build
+          requires:
+            - build
       - chess-test:
-        requires:
-          - build
+          requires:
+            - build
       - auth-test:
-        requires:
-          - build
+          requires:
+            - build
