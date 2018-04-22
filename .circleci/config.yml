@@ -5,13 +5,12 @@ jobs:
       - image: circleci/node:8.11.1
     steps:
       - checkout
-      - run: ~/project/2/make build
+      - run: docker-compose -f ~/project/2/app.yml build
   test:
     docker:
       - image: circleci/node:8.11.1
     steps:
       - checkout
-      - run: pwd && ls
       - run: ~/project/2/make test
 
 workflows:
@@ -19,4 +18,3 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test
