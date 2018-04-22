@@ -1,8 +1,8 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/classic:edge
+    machine: true
+      - image: circleci/classic:201711-01
     steps:
       - checkout
       - run: docker-compose -f ~/project/2/app.yml build
