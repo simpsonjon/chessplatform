@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/classic:edge
     steps:
       - checkout
       - run: docker-compose -f ~/project/2/app.yml build
   test:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/classic:edge
     steps:
       - checkout
       - run: ~/project/2/make test
