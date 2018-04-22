@@ -23,11 +23,11 @@ build-chess:
 	docker build -t simpsonjon/chessplat:chess ./chess/
 build-auth:
 	docker build -t simpsonjon/chessplat:auth ./auth/
-build-test-api:
+build-test-api: build-api
 	docker build -t simpsonjon/chessplat:api-test -f ./api/Test.Dockerfile ./api/
-build-test-chess:
+build-test-chess: build-chess
 	docker build -t simpsonjon/chessplat:chess-test -f ./chess/Test.Dockerfile ./chess/
-build-test-auth:
+build-test-auth: build-auth
 	docker build -t simpsonjon/chessplat:auth-test -f ./auth/Test.Dockerfile ./auth/
 
 build-test: build-test-api
