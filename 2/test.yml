@@ -1,0 +1,28 @@
+version: "2"
+services:
+  api:
+    build: 
+      context: ./api
+      dockerfile: Test.Dockerfile
+    image: simpsonjon/chessplat:api-test
+    ports:
+      - 3000:3000
+    links:
+      - auth
+      - chess
+  auth:
+    build: 
+      context: ./auth
+      dockerfile: Test.Dockerfile
+    image: simpsonjon/chessplat:auth-test
+    ports:
+      - 8080:3000
+
+  chess:
+    build: 
+      context: ./chess
+      dockerfile: Test.Dockerfile
+    image: simpsonjon/chessplat:chess-test
+    ports:
+      - 8081:3000
+  
