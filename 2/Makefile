@@ -14,44 +14,30 @@ help:
 	echo "    deps - Check for all dependencies"
 	echo "    clean - Remove all used containers"
 
-build: clean
-	docker-compose -f ./app.yml build
+SERVICE = api chess auth
 
-build-api:
-	docker build -t simpsonjon/chessplat:api ./api/
-build-chess:
-	docker build -t simpsonjon/chessplat:chess ./chess/
-build-auth:
-	docker build -t simpsonjon/chessplat:auth ./auth/
-build-test-api: build-api
-	docker build -t simpsonjon/chessplat:api-test -f ./api/Test.Dockerfile ./api/
-build-test-chess: build-chess
-	docker build -t simpsonjon/chessplat:chess-test -f ./chess/Test.Dockerfile ./chess/
-build-test-auth: build-auth
-	docker build -t simpsonjon/chessplat:auth-test -f ./auth/Test.Dockerfile ./auth/
-build-test-integration: build
-	docker build -t simpsonjon/chessplat:integration-test -f ./integration/Dockerfile ./integration/
-build-test: build-test-api
-	build-test-auth
-	build-test-chess
+
+build-test-%:
+	docker build -t simpsonjon/chessplat:$*-test -f ./$*/Test.Dockerfile ./$*/
+build-%: 
+	docker build -t simpsonjon/chessplat:$* ./$*/
+build: clean
+	docker-compose -D -f ./app.yml build
 
 test-integration: clean
-	docker-compose -f ./integration.yml up
-test: build-test
-	docker run -it -p 3000:3000 simpsonjon/chessplat:api-test
-	docker run -it -p 8080:3000 simpsonjon/chessplat:auth-test
-	docker run -it -p 8081:3000 simpsonjon/chessplat:chess-test
-test-api: build-test-api
-	docker run -it -p 3000:3000 simpsonjon/chessplat:api-test
-test-auth: build-test-auth
-	docker run -it -p 8080:3000 simpsonjon/chessplat:auth-test
-test-chess: build-test-chess
-	docker run -it -p 8080:3000 simpsonjon/chessplat:chess-test
+	docker-compose -f ./integration.yml up --build
+test-%: 
+	make build-$*
+	make build-test-$*
+	docker run -it simpsonjon/chessplat:$*-test
+test: 
+	docker-compose -f ./test.yml up --build
 
 run: build
 	docker-compose -f ./app.yml up
 clean:
 	docker-compose -f ./app.yml rm -f
+	docker-compose -f ./test.yml rm -f
 	docker-compose -f ./integration.yml rm -f
 
 deps:
