@@ -11,7 +11,8 @@ jobs:
       - image: circleci/node:8.11.1
     working_directory: ~/project/2/api/api
     steps: 
-      - checkout
+      - checkout:
+          path: ~/project/
       - run: npm install
       - run: npm test
   chess-test:
@@ -19,7 +20,8 @@ jobs:
       - image: circleci/node:8.11.1
     working_directory: ~/project/2/chess/chess
     steps: 
-      - checkout
+      - checkout:
+          path: ~/project/
       - run: npm install
       - run: npm test
   auth-test:
@@ -27,7 +29,8 @@ jobs:
       - image: circleci/node:8.11.1
     working_directory: ~/project/2/auth/auth
     steps: 
-      - checkout
+      - checkout:
+          path: ~/project/
       - run: npm install
       - run: npm test
 
