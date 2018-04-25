@@ -5,6 +5,9 @@ Milestones 2/
 - Deployment with docker compose
 - Introduce CircleCI 
 
+Milestone 2.5/
+- Be able to debug containers live
+
 Milestones 3/
 - Introduce GCP 
 - Introduce Pubsub Emulator
