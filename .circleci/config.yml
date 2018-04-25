@@ -43,6 +43,6 @@ workflows:
       - auth-test
       - build:
           requires:
-            - apt-test
+            - api-test
             - chess-test
             - auth-test
