@@ -38,13 +38,11 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - api-test:
+      - api-test
+      - chess-test
+      - auth-test
+      - build:
           requires:
-            - build
-      - chess-test:
-          requires:
-            - build
-      - auth-test:
-          requires:
-            - build
+            - apt-test
+            - chess-test
+            - auth-test
