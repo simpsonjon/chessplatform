@@ -36,25 +36,25 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  build-and-test:
     jobs:
-      - api-test:
-          filters:
-	          tags:
-	            only: /^v.*/
-      - chess-test:
-          filters:
-	          tags:
-	            only: /^v.*/
-      - auth-test:
-          filters:
-	          tags:
-	            only: /^v.*/
       - build:
           requires:
             - api-test
             - chess-test
             - auth-test
           filters:
-	          tags:
-	            only: /^v.*/
+            tags:
+              only: /^v.*/
+      - api-test:
+          filters:
+            tags:
+              only: /^v.*/
+      - auth-test:
+          filters:
+            tags:
+              only: /^v.*/
+      - chess-test:
+          filters:
+            tags:
+              only: /^v.*/
