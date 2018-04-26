@@ -34,6 +34,9 @@ jobs:
       - run: npm install
       - run: npm test
 
+#CircleCI uses an OR operator on filters
+#In order to only build on tagged releases we need to ignore all branches
+#OR filter by tag... feels hacky
 workflows:
   version: 2
   build-and-test:
@@ -44,17 +47,25 @@ workflows:
             - chess-test
             - auth-test
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
       - api-test:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
       - auth-test:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
       - chess-test:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
