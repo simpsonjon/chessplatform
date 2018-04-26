@@ -46,3 +46,6 @@ workflows:
             - api-test
             - chess-test
             - auth-test
+    filters:
+	    tags:
+	      only: /^v.*/
