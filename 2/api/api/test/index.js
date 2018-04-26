@@ -7,7 +7,7 @@ tape('Server returns hello world', function (t) {
     .get('/')
     .expect(200, 'Hello World!')
     .end(function (e) {
-      t.error(e, 'Helloworld response correct')
+      t.error(e, 'Hello world response correct')
       t.end()
     })
 })
