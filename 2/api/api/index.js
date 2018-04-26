@@ -8,9 +8,16 @@ app.get('/', function(req,res){
   res.send(response)
 })
 
-app.get('/:id', function (req, res) {
+app.get('/move/:id', function (req, res) {
+  request('http://chess:3000/', function (error, response, body) {
+    console.dir(response.body)
+    res.send(response.body)
+  });
+})
+
+app.get('/auth/:id', function (req, res) {
   request('http://auth:3000/'+req.params.id, function (error, response, body) {
-    console.log(response.body)
+    console.log('To auth:' + response.body)
     res.json(JSON.parse(response.body))
   });
 })
