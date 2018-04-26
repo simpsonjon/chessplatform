@@ -38,7 +38,7 @@ function apiReturnsAuthorized (url) {
     return function helloWorldTest (t) {
         console.log(url)
       supertest(url)
-        .get('/1')
+        .get('/auth/1')
         .set('Accept', 'application/json')
         .expect(200, {authenticated:true})
         .end(function(e) {
@@ -48,5 +48,19 @@ function apiReturnsAuthorized (url) {
     }
   }
 
+  function chessReturnsHelloWorld (url) {
+    return function helloWorldTest (t) {
+        console.log(url)
+      supertest(url)
+        .get('/move/1')
+        .expect(200, 'Chess response!')
+        .end(function(e) {
+          t.error(e, 'Chess response valid')
+          t.end()
+        })
+    }
+  }
+
 test('Test producer', helloWorldTestBuilder(api))
 test('Test authentication', apiReturnsAuthorized(api))
+test('Chess is live', chessReturnsHelloWorld(api))
