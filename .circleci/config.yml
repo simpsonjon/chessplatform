@@ -45,16 +45,16 @@ workflows:
             - auth-test
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - api-test:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - auth-test:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - chess-test:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
