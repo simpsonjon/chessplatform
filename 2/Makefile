@@ -21,8 +21,6 @@ build-test-%:
 	docker build -t simpsonjon/chessplat:$*-test -f ./$*/Test.Dockerfile ./$*/
 build-%: 
 	docker build -t simpsonjon/chessplat:$* ./$*/
-build: clean
-	docker-compose -D -f ./app.yml build
 
 test-integration: clean
 	docker-compose -f ./integration.yml up --build
@@ -33,8 +31,8 @@ test-%:
 test: 
 	docker-compose -f ./test.yml up --build
 
-run: build
-	docker-compose -f ./app.yml up
+run: 
+	docker-compose -f ./app.yml up --build
 clean:
 	docker-compose -f ./app.yml rm -f
 	docker-compose -f ./test.yml rm -f
