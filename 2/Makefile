@@ -16,14 +16,17 @@ help:
 
 SERVICE = api chess auth
 
-
+dev-api:
+	docker build --build-arg dev=true -t simpsonjon/chessplat:api-test -f ./api/Test.Dockerfile ./api/ 
 build-test-%:
 	docker build -t simpsonjon/chessplat:$*-test -f ./$*/Test.Dockerfile ./$*/
 build-%: 
 	docker build -t simpsonjon/chessplat:$* ./$*/
 
 test-integration: clean
-	docker-compose -f ./integration.yml up --build
+	docker-compose -f ./integration.yml up --build \
+    --abort-on-container-exit \
+    --exit-code-from integration
 test-%: 
 	make build-$*
 	make build-test-$*
