@@ -1,25 +1,25 @@
 1/ contains the most basic 'hello world' of the project. A user should make sure that deploys correctly before advancing
 
 Milestones 2/
-- Communication between API and Chess, API and Auth
-- Deployment with docker compose
-- Introduce CircleCI 
+[*] Communication between API and Chess, API and Auth
+[*] Deployment with docker compose
+[*] Introduce CircleCI 
 
 Milestone 2.5/
-- Be able to debug containers live
+[-] Be able to debug containers live
 
 Milestones 3/
-- Introduce GCP 
-- Introduce Pubsub Emulator
-- Deploy to GKE
+[-] Introduce GCP 
+[-] Introduce Pubsub Emulator
+[-] Deploy to GKE
 
 Milestone 4/
-- Monitoring Intro
+[-] Monitoring Intro
 
 Milestone 5/
-- Draw.io App Request flows
-- BI: First look at costs per operation
+[-] Draw.io App Request flows
+[-] BI: First look at costs per operation
 
 Milestone 6/
-- Develop actual chess 'hello world' 
-- All users can move any turn on any board
+[-] Develop actual chess 'hello world' 
+[-] All users can move any turn on any board
