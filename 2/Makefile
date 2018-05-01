@@ -31,6 +31,7 @@ test-%:
 	docker run -it simpsonjon/chessplat:$*-test
 
 dev: 
+	docker-compose -f ./dev.yml down
 	docker-compose -f ./dev.yml up --build
 
 run: 
