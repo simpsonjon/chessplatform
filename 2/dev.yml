@@ -20,6 +20,9 @@ services:
       dockerfile: Test.Dockerfile
       target: dev
     image: simpsonjon/chessplat:auth-test
+    volumes: 
+      - ./auth/auth:/app
+      - /app/node_modules
     ports:
       - 8080:3000
 
@@ -29,6 +32,9 @@ services:
       dockerfile: Test.Dockerfile
       target: dev
     image: simpsonjon/chessplat:chess-test
+    volumes:
+      - ./chess/chess:/app
+      - /app/node_modules
     ports:
       - 8081:3000
   
