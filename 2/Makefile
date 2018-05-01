@@ -33,7 +33,8 @@ test-%:
 dev: 
 	docker-compose -f ./dev.yml down
 	docker-compose -f ./dev.yml up --build
-
+dev-%:
+	docker-compose -f ./dev.yml -f ./dev.$*.override.yml up
 run: 
 	docker-compose -f ./app.yml up --build
 clean:
