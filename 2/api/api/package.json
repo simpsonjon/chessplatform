@@ -9,7 +9,7 @@
       "tape": "^4.9.0"
     },
     "scripts": {
-      "start": "nodedemon -L index.js",
+      "start": "nodemon -L index.js",
       "test": "nyc tape ./test/*"
     }
   }
