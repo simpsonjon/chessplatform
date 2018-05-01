@@ -16,8 +16,6 @@ help:
 
 SERVICE = api chess auth
 
-dev-api:
-	docker build --build-arg dev=true -t simpsonjon/chessplat:api-test -f ./api/Test.Dockerfile ./api/ 
 build-test-%:
 	docker build -t simpsonjon/chessplat:$*-test -f ./$*/Test.Dockerfile ./$*/
 build-%: 
@@ -31,14 +29,15 @@ test-%:
 	make build-$*
 	make build-test-$*
 	docker run -it simpsonjon/chessplat:$*-test
-test: 
-	docker-compose -f ./test.yml up --build
+
+dev: 
+	docker-compose -f ./dev.yml up --build
 
 run: 
 	docker-compose -f ./app.yml up --build
 clean:
 	docker-compose -f ./app.yml rm -f
-	docker-compose -f ./test.yml rm -f
+	docker-compose -f ./dev.yml rm -f
 	docker-compose -f ./integration.yml rm -f
 
 deps:
