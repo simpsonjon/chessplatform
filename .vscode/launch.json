@@ -1,4 +1,3 @@
-{
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
@@ -21,7 +20,7 @@
       "address": "localhost",
       "port": 9229,
       "restart": true,
-      "localRoot": "${workspaceFolder}/2/api/api",
+      "localRoot": "${workspaceFolder}/3/api/api",
       "remoteRoot": "/app/"
     }, 
     {
@@ -31,7 +30,7 @@
       "address": "localhost",
       "port": 9229,
       "restart": true,
-      "localRoot": "${workspaceFolder}/2/auth/auth",
+      "localRoot": "${workspaceFolder}/3/auth/auth",
       "remoteRoot": "/app/"
     },
     {
@@ -41,7 +40,7 @@
       "address": "localhost",
       "port": 9229,
       "restart": true,
-      "localRoot": "${workspaceFolder}/2/chess/chess",
+      "localRoot": "${workspaceFolder}/3/chess/chess",
       "remoteRoot": "/app/"
     },
     {

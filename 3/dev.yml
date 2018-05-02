@@ -1,0 +1,40 @@
+version: "3.4"
+services:
+  api:
+    build: 
+      context: ./api
+      dockerfile: Test.Dockerfile
+      target: dev 
+    image: simpsonjon/chessplat:api-test
+    volumes:
+      - ./api/api:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    links:
+      - auth
+      - chess
+  auth:
+    build: 
+      context: ./auth
+      dockerfile: Test.Dockerfile
+      target: dev
+    image: simpsonjon/chessplat:auth-test
+    volumes: 
+      - ./auth/auth:/app
+      - /app/node_modules
+    ports:
+      - 8080:3000
+
+  chess:
+    build: 
+      context: ./chess
+      dockerfile: Test.Dockerfile
+      target: dev
+    image: simpsonjon/chessplat:chess-test
+    volumes:
+      - ./chess/chess:/app
+      - /app/node_modules
+    ports:
+      - 8081:3000
+  

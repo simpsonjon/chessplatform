@@ -1,0 +1,15 @@
+{
+    "dependencies": {
+      "express": "^4.16.3"
+    },
+    "devDependencies": {
+      "nyc": "^11.7.1",
+      "supertest": "^3.0.0",
+      "tape": "^4.9.0"
+    },
+    "scripts": {
+      "start": "nodemon -L index.js",
+      "debug": "nodemon --inspect=0.0.0.0:9229 --nolazy index.js",
+      "test": "nyc tape ./test/*"
+    }
+  }

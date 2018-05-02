@@ -5,11 +5,11 @@ jobs:
       image: circleci/classic:201711-01
     steps:
       - checkout
-      - run: docker-compose -f ~/project/2/app.yml build
+      - run: docker-compose -f ~/project/3/app.yml build
   api-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/api/api
+    working_directory: ~/project/3/api/api
     steps: 
       - checkout:
           path: ~/project/
@@ -18,7 +18,7 @@ jobs:
   chess-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/chess/chess
+    working_directory: ~/project/3/chess/chess
     steps: 
       - checkout:
           path: ~/project/
@@ -27,7 +27,7 @@ jobs:
   auth-test:
     docker:
       - image: circleci/node:8.11.1
-    working_directory: ~/project/2/auth/auth
+    working_directory: ~/project/3/auth/auth
     steps: 
       - checkout:
           path: ~/project/
