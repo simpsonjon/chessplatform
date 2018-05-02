@@ -6,7 +6,7 @@ Milestones 2/
 [*] Introduce CircleCI 
 
 Milestone 2.5/
-[-] Be able to debug containers live
+[*] Be able to debug containers live
 
 Milestones 3/
 [-] Introduce GCP 

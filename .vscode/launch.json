@@ -1,0 +1,54 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Remote",
+      "address": "localhost",
+      "port": 9229,
+      "restart": true,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app/"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "API: Attach to Remote",
+      "address": "localhost",
+      "port": 9229,
+      "restart": true,
+      "localRoot": "${workspaceFolder}/2/api/api",
+      "remoteRoot": "/app/"
+    }, 
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "AUTH: Attach to Remote",
+      "address": "localhost",
+      "port": 9229,
+      "restart": true,
+      "localRoot": "${workspaceFolder}/2/auth/auth",
+      "remoteRoot": "/app/"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "CHESS: Attach to Remote",
+      "address": "localhost",
+      "port": 9229,
+      "restart": true,
+      "localRoot": "${workspaceFolder}/2/chess/chess",
+      "remoteRoot": "/app/"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${file}"
+    }
+  ]
+}
