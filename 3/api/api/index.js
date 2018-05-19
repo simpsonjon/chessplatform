@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 var request = require('request')
 const Datastore = require('@google-cloud/datastore');
-
+const PubSub = require('@google-cloud/pubsub')
 var response = 'Hello World!'
 var projName = process.env.PROJNAME || 'fauxpassproj-dev'
 var topicName = process.env.TOPICNAME || 'chess-moves'
@@ -15,6 +15,9 @@ const projectId = 'YOUR_PROJECT_ID';
 const datastore = new Datastore({
   projectId: projName,
 });
+const pubsub = new PubSub({
+  projectId: projName
+})
 
 app.get('/', function (req, res) {
   res.send(response)
@@ -59,9 +62,19 @@ app.get('/signup/:username', function (req, res) {
     .then(() => {
       res.status(200).send(`Saved ${user.key.name}`)
       console.log(`Saved ${user.key.name}: ${user.data.registered}`);
+      pubsub
+        .topic(topicName)
+        .publisher()
+        .publish(Buffer.from(`Saved ${user.key.name}`))
+        .then( messageID => {
+          console.log(`Message published: ${messageID}`)
+        })
+        .catch(err => {
+          console.error('ERROR:', err);
+        });
+
     })
     .catch(err => {
-      res.status(500).send(`Error saving: ${user.key.name}`)
       console.error('ERROR:', err);
     });
 })
