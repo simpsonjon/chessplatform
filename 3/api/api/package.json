@@ -1,9 +1,7 @@
 {
     "dependencies": {
       "express": "^4.16.3",
-      "request": "^2.85.0",
-      "@google-cloud/pubsub": "^0.18.0",
-      "@google-cloud/datastore": "^1.4.0"
+      "request": "^2.85.0"
     },
     "devDependencies": {
       "nyc": "^11.7.1",
