@@ -7,6 +7,25 @@ app.get('/', function (req, res) {
   res.send(response)
 })
 
+app.get('/signup/:username', function(req, res){
+  request('http://auth:3000/signup/' + req.params.username, function(error, response, body){
+    if(response.statusCode == 200){
+      res.status(200).send('User registered')
+    }else{
+      res.send('Failed to register')
+    }
+  })
+})
+
+app.get('/login/:username', function(req, res){
+  request('http://auth:3000/login/' + req.params.username, function(error, response, body){
+    if(response.statusCode == 200){
+      res.status(200).send('User logged in')
+    }else{
+      res.send('Please try logging in again')
+    }
+  })
+})
 app.get('/move/:id', function (req, res) {
   request('http://chess:3000/', function (error, response, body) {
     console.dir(response.body)
