@@ -5,8 +5,6 @@ services:
       - 8081:3000
       - 9229:9229
     command: ["npm", "run", "debug"]
-    volumes:
-      - ~/.config/:/root/.config
     environment:
       - SUBNAME=moves
       - PROJNAME=fauxpassproj-dev

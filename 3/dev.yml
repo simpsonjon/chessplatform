@@ -7,6 +7,7 @@ services:
       target: dev 
     image: simpsonjon/chessplat:api-test
     volumes:
+      - ~/.config/:/root/.config
       - ./api/api:/app
       - /app/node_modules
     ports:
@@ -33,6 +34,7 @@ services:
       target: dev
     image: simpsonjon/chessplat:chess-test
     volumes:
+      - ~/.config/:/root/.config
       - ./chess/chess:/app
       - /app/node_modules
     ports:
