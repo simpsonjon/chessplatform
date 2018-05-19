@@ -12,6 +12,9 @@ services:
       - /app/node_modules
     ports:
       - 3000:3000
+    environment:
+      - PROJNAME=fauxpassproj-dev
+      - TOPICNAME=chess-moves
     links:
       - auth
       - chess
@@ -39,4 +42,7 @@ services:
       - /app/node_modules
     ports:
       - 8081:3000
+    environment:
+      - SUBNAME=moves
+      - PROJNAME=fauxpassproj-dev
   
