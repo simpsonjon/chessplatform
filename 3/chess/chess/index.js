@@ -32,7 +32,7 @@ subscription.on(`message`, messageHandler);
 setTimeout(() => {
   subscription.removeListener('message', messageHandler);
   console.log(`${messageCount} message(s) received.`);
-}, 100 * 1000);
+}, 600000);
 
 /**
  * Handle Endpoint for service
