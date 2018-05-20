@@ -7,7 +7,8 @@ var projName = process.env.PROJNAME || 'fauxpassproj-dev'
 var subscriptionName = process.env.SUBNAME || 'moves'
 
 var pubsub = new PubSub({
-  projectId: projName
+  projectId: projName,
+  keyFilename: '/secret/chess-key.json'
 })
 /** 
  * Handle pubsub message pulling and ACKs

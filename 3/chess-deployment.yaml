@@ -12,9 +12,17 @@ spec:
       labels:
         app: chess 
     spec:
+      volumes:
+        - name: chess-cred
+          secret:
+            secretName: chess-cred
       containers:
       - image: simpsonjon/chessplat:chess
         name: chess
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: chess-cred
+          readOnly: true
+          mountPath: "/secret/"
       restartPolicy: Always

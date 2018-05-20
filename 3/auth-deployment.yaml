@@ -12,9 +12,18 @@ spec:
       labels:
         app: auth
     spec:
+      volumes:
+        - name: auth-cred
+          secret:
+            secretName: auth-cred
       containers:
       - image: simpsonjon/chessplat:auth
         name: auth
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: auth-cred
+          readOnly: true
+          mountPath: "/secret/"
+        
       restartPolicy: Always

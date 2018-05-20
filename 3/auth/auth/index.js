@@ -12,9 +12,11 @@ var nameSpace = process.env.NAMESPACE || 'testing'
 // Creates a client
 const datastore = new Datastore({
   projectId: projName,
+  keyFilename: '/secret/auth-key.json'
 });
 const pubsub = new PubSub({
-  projectId: projName
+  projectId: projName,
+  keyFilename: '/secret/auth-key.json'
 })
 
 app.get('/', function (req, res) {
