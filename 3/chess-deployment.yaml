@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: chess-d
+spec:
+  selector:
+    matchLabels:
+      app: chess
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: chess 
+    spec:
+      containers:
+      - image: simpsonjon/chessplat:chess
+        name: chess
+        ports:
+        - containerPort: 3000
+      restartPolicy: Always
