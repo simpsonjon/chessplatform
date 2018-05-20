@@ -1,14 +1,15 @@
 var express = require('express')
 var app = express()
 var request = require('request')
-var response = 'Hello World!'
+var responseText = 'Hello World!'
 
 app.get('/', function (req, res) {
-  res.send(response)
+  res.send(responseText)
+  console.log('hello world')
 })
 
 app.get('/signup/:username', function(req, res){
-  request('http://auth:3000/signup/' + req.params.username, function(error, response, body){
+  request('http://auth-service:3000/signup/' + req.params.username, function(error, response, body){
     if(response.statusCode == 200){
       res.status(200).send('User registered')
     }else{
@@ -18,7 +19,7 @@ app.get('/signup/:username', function(req, res){
 })
 
 app.get('/login/:username', function(req, res){
-  request('http://auth:3000/login/' + req.params.username, function(error, response, body){
+  request('http://auth-service:3000/login/' + req.params.username, function(error, response, body){
     if(response.statusCode == 200){
       res.status(200).send('User logged in')
     }else{
@@ -27,14 +28,14 @@ app.get('/login/:username', function(req, res){
   })
 })
 app.get('/move/:id', function (req, res) {
-  request('http://chess:3000/', function (error, response, body) {
+  request('http://chess-service:3000/', function (error, response, body) {
     console.dir(response.body)
     res.send(response.body)
   });
 })
 
 app.get('/auth/:id', function (req, res) {
-  request('http://auth:3000/' + req.params.id, function (error, response, body) {
+  request('http://auth-service:3000/' + req.params.id, function (error, response, body) {
     console.log('To auth:' + response.body)
     res.json(JSON.parse(response.body))
   });
