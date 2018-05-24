@@ -10,7 +10,6 @@ Milestone 2.5/
 
 Milestones 3/
 [-] Introduce GCP 
-[-] Introduce Pubsub Emulator
 [-] Deploy to GKE
 
 Milestone 4/
@@ -23,3 +22,4 @@ Milestone 5/
 Milestone 6/
 [-] Develop actual chess 'hello world' 
 [-] All users can move any turn on any board
+[-] Introduce Pubsub Emulator
