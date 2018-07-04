@@ -11,5 +11,5 @@ if [ $? -eq 1 ]; then
 	gcloud projects add-iam-policy-binding "$PROJECT" \
 	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/datastore.user
 	gcloud projects add-iam-policy-binding "$PROJECT" \
-	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.subscriber
+	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.publisher
 fi
