@@ -9,5 +9,7 @@ if [ $? -eq 1 ]; then
 	gcloud iam service-accounts create auth-role --display-name "Auth SA"
 	PROJECT=$(gcloud config get-value project)
 	gcloud projects add-iam-policy-binding "$PROJECT" \
-	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/editor
+	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/datastore.user
+	gcloud projects add-iam-policy-binding "$PROJECT" \
+	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.subscriber
 fi
