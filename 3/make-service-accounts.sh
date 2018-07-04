@@ -13,3 +13,13 @@ if [ $? -eq 1 ]; then
 	gcloud projects add-iam-policy-binding "$PROJECT" \
 	--member serviceAccount:auth-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.publisher
 fi
+
+# Check if chess-role@ exists, if not create it. 
+gcloud iam service-accounts list | grep -o 'chess-role@\S*\b';
+if [ $? -eq 1 ]; then
+	echo "Making service account chess-role"
+	gcloud iam service-accounts create chess-role --display-name "Chess SA"
+	PROJECT=$(gcloud config get-value project)
+	gcloud projects add-iam-policy-binding "$PROJECT" \
+	--member serviceAccount:chess-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.subscriber
+fi
