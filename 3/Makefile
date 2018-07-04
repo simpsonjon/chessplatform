@@ -41,7 +41,6 @@ clean:
 	docker-compose -f ./app.yml rm -f
 	docker-compose -f ./dev.yml rm -f
 	docker-compose -f ./integration.yml rm -f
-
 deps:
 	echo "  Dependencies: "
 	echo
