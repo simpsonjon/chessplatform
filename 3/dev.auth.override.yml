@@ -1,7 +1,0 @@
-version: "3.4"
-services:
-  auth:
-    ports:
-      - 8080:3000
-      - 9229:9229 
-    command: ["npm", "run", "debug"] 
