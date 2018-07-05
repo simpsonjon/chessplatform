@@ -27,9 +27,7 @@ spec:
           mountPath: "/secret/"
         env:
         - name: PROJNAME
-          value: "simpsonjon-remote" 
-        - name: TOPICNAME
-          value: "chess-moves"
-        - name: NAMESPACE
-          value: "testing"
+          value: "fauxpassproj-dev" 
+        - name: SUBNAME
+          value: "moves"
       restartPolicy: Always
