@@ -16,8 +16,8 @@ help:
 
 SERVICE = api chess auth
 
-build-test-%:
-	docker build -t simpsonjon/chessplat:$*-test -f ./$*/Test.Dockerfile ./$*/
+build-dev-%:
+	docker build -t simpsonjon/chessplat:$*-dev -f ./$*/Dev.Dockerfile ./$*/
 build-%: 
 	docker build -t simpsonjon/chessplat:$* ./$*/
 
@@ -27,8 +27,8 @@ test-integration: clean
     --exit-code-from integration
 test-%: 
 	make build-$*
-	make build-test-$*
-	docker run -it simpsonjon/chessplat:$*-test
+	make build-dev-$*
+	docker run -it simpsonjon/chessplat:$*-dev
 
 dev: 
 	docker-compose -f ./dev.yml down
@@ -40,7 +40,7 @@ run:
 	docker-compose -f ./app.yml up --build
 clean:
 	echo "Clean is broken"
-	
+
 deps:
 	echo "  Dependencies: "
 	echo

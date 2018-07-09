@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      volumes:
+      - name: local-dev-dir
+        hostPath:
+          path: FULLPATHSUB/api/api
+          type: Directory
+      containers:
+      - image: simpsonjon/chessplat:api-dev
+        name: api
+        command: ["/bin/sh"]
+        args: ["-c", "cp -a /api/node_modules/. /app/node_modules/ && npm run-script debug"]
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: local-dev-dir
+          mountPath: /app/
+      restartPolicy: Always
