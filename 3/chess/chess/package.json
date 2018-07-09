@@ -9,7 +9,7 @@
       "tape": "^4.9.0"
     },
     "scripts": {
-      "start": "nodemon -L index.js",
+      "start": "nodemon index.js",
       "debug": "nodemon --inspect=0.0.0.0:9229 --nolazy index.js",
       "test": "nyc tape ./test/*"
     }
