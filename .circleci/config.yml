@@ -42,14 +42,5 @@ workflows:
   build-and-test:
     jobs:
       - api-test:
-          filters:
-            branches:
-              ignore: /.*/
       - auth-test:
-          filters:
-            branches:
-              ignore: /.*/
       - chess-test:
-          filters:
-            branches:
-              ignore: /.*/
