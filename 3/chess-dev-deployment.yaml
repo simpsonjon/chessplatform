@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: chess-d
+spec:
+  selector:
+    matchLabels:
+      app: chess
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: chess 
+    spec:
+      volumes:
+        - name: chess-cred
+          secret:
+            secretName: chess-cred
+        - name: chess-dev-dir
+          hostPath:
+            path: FULLPATHSUB/chess/chess
+            type: Directory
+      containers:
+      - image: simpsonjon/chessplat:chess-dev
+        name: chess
+        command: ["/bin/sh"]
+        args: ["-c", "cp -a /chess/node_modules/. /app/node_modules/ && npm run-script debug"]
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: chess-cred
+          readOnly: true
+          mountPath: "/secret/"
+        - name: chess-dev-dir
+          mountPath: /app/
+        env:
+        - name: PROJNAME
+          value: "fauxpassproj-dev" 
+        - name: SUBNAME
+          value: "moves"
+      restartPolicy: Always
