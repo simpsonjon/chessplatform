@@ -38,9 +38,8 @@ dev-%:
 run: 
 	docker-compose -f ./app.yml up --build
 clean:
-	docker-compose -f ./app.yml rm -f
-	docker-compose -f ./dev.yml rm -f
-	docker-compose -f ./integration.yml rm -f
+	echo "Clean is broken"
+	
 deps:
 	echo "  Dependencies: "
 	echo
