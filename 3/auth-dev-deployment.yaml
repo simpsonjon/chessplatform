@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  selector:
+    matchLabels:
+      app: auth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      volumes:
+        - name: auth-cred
+          secret:
+            secretName: auth-cred
+        - name: auth-dev-dir
+          hostPath:
+            path: FULLPATHSUB/auth/auth
+            type: Directory
+      containers:
+      - image: simpsonjon/chessplat:auth-dev
+        name: auth
+        command: ["/bin/sh"]
+        args: ["-c", "cp -a /auth/node_modules/. /app/node_modules/ && npm run-script debug"]
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: auth-cred
+          readOnly: true
+          mountPath: "/secret/"
+        - name: auth-dev-dir
+          mountPath: /app/
+        env:
+        - name: PROJNAME
+          value: "fauxpassproj-dev" 
+        - name: TOPICNAME
+          value: "chess-moves"
+        - name: NAMESPACE
+          value: "testing"
+      restartPolicy: Always
