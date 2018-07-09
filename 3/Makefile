@@ -34,7 +34,8 @@ dev:
 	docker-compose -f ./dev.yml down
 	docker-compose -f ./dev.yml up --build
 dev-%:
-	docker-compose -f ./dev.yml -f ./dev.$*.override.yml up --build
+	bash -c "kubectl create -f <(cat $*-dev-deployment.yaml | sed 's/FULLPATHSUB/$(shell pwd | sed 's_/_\\/_g')/g')"
+
 run: 
 	docker-compose -f ./app.yml up --build
 clean:
