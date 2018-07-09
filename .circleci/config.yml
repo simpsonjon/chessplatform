@@ -41,31 +41,15 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build:
-          requires:
-            - api-test
-            - chess-test
-            - auth-test
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /.*/
       - api-test:
           filters:
             branches:
               ignore: /.*/
-            tags:
-              only: /.*/
       - auth-test:
           filters:
             branches:
               ignore: /.*/
-            tags:
-              only: /.*/
       - chess-test:
           filters:
             branches:
               ignore: /.*/
-            tags:
-              only: /.*/
