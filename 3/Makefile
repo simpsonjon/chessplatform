@@ -28,7 +28,7 @@ test-integration: clean
 test-%: 
 	make build-$*
 	make build-dev-$*
-	docker run -it simpsonjon/chessplat:$*-dev
+	docker run -it simpsonjon/chessplat:$*-dev npm test
 
 dev: 
 	docker-compose -f ./dev.yml down
