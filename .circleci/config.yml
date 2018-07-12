@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Store Service Account
           command: |
-            base64 --decode $GCLOUD_STORAGE > ${HOME}/gcloud-service-key.json
+            echo $gcrkey | base64 --decode > ${HOME}/gcloud-service-key.json
       - run: |
           gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
