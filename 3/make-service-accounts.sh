@@ -33,6 +33,15 @@ if [ $? -eq 1 ]; then
 	echo "push through docker"
 	gcloud iam service-accounts create gcr-role --display-name "GCR SA" && \
 	gsutil iam ch serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com:admin gs://artifacts."$PROJECT".appspot.com
+	#Docker push requires storage.buckets.get, which is only available by default
+	# in storage.admin, which is too broad for me to give to CircleCI
+	# Create custom role
+	gcloud iam roles create bucketgetter --project "$PROJECT" \
+	--title "Bucket Getter" --description "Allows project wide storage.buckets.get" \
+	--permissions storage.buckets.get --stage GA
+	gcloud projects add-iam-policy-binding "$PROJECT" \
+	--member serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com --role projects/"$PROJECT"/roles/bucketgetter
+
 fi
 
 if [ ! -f ./auth-key.json ]; then
