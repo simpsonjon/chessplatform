@@ -48,6 +48,27 @@ jobs:
             - node_modules
           key: auth-dependencies-{{ checksum "package.json" }}
       - run: npm test
+  push-gcr:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/project/3/api/api
+    steps: 
+      - checkout:
+          path: ~/project/
+      - run:
+        name: Store Service Account
+        command: base64 --decode $GCLOUD_STORAGE > ${HOME}/gcloud-service-key.json
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          gcloud auth configure-docker
+      - setup_remote_docker
+      - run:
+        name: Docker push
+        command: |
+          docker build -t gcr.io/fauxpassproj-dev/api-test .
+          docker push gcr.io/fauxpassproj-dev/api-test
 
 #CircleCI uses an OR operator on filters
 #In order to only build on tagged releases we need to ignore all branches
