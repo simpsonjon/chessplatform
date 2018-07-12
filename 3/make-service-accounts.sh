@@ -23,6 +23,14 @@ if [ $? -eq 1 ]; then
 	gcloud projects add-iam-policy-binding "$PROJECT" \
 	--member serviceAccount:chess-role@"$PROJECT".iam.gserviceaccount.com --role roles/pubsub.subscriber
 fi
+# Check if gcr-role@ exists, if not create it. 
+gcloud iam service-accounts list | grep -o 'gcr-role@\S*\b';
+if [ $? -eq 1 ]; then
+	echo "Making service account gcr-role"
+	PROJECT=$(gcloud config get-value project)
+	gcloud iam service-accounts create gcr-role --display-name "GCR SA"
+	gsutil iam ch serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com:objectViewer gs://artifacts."$PROJECT".appspot.com
+fi
 
 if [ ! -f ./auth-key.json ]; then
     gcloud iam service-accounts keys create auth-key.json --iam-account=auth-role@"$PROJECT".iam.gserviceaccount.com
@@ -32,6 +40,11 @@ if [ ! -f ./chess-key.json ]; then
     gcloud iam service-accounts keys create chess-key.json --iam-account=chess-role@"$PROJECT".iam.gserviceaccount.com
 	echo "Generating Chess-Key as chess-key.json"
 fi
+if [ ! -f ./gcr-key.json ]; then
+    gcloud iam service-accounts keys create gcr-key.json --iam-account=gcr-role@"$PROJECT".iam.gserviceaccount.com
+	echo "Generating Auth-Key as auth-key.json"
+fi
+
 echo "Attempting to push keys as secrets through kubectl"
 kubectl create secret generic auth-cred --from-file=./auth-key.json
 kubectl create secret generic chess-cred --from-file=./chess-key.json
