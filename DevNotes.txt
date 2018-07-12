@@ -9,8 +9,11 @@ Milestone 2.5/
 [*] Be able to debug containers live
 
 Milestones 3/
-[-] Introduce GCP 
-[-] Deploy to GKE
+[*] Introduce GCP 
+[*] Deploy to GKE
+
+Milestones 3.5/
+[ ] Convert Chess Service to Go
 
 Milestone 4/
 [-] Monitoring Intro
