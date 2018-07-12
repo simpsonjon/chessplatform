@@ -28,6 +28,9 @@ gcloud iam service-accounts list | grep -o 'gcr-role@\S*\b';
 if [ $? -eq 1 ]; then
 	echo "Making service account gcr-role"
 	PROJECT=$(gcloud config get-value project)
+	echo "If you have bucket errors, please make sure your project has"
+	echo "an artfacts.<project>.appspot.com bucket from the gcloud container"
+	echo "push through docker"
 	gcloud iam service-accounts create gcr-role --display-name "GCR SA" && \
 	gsutil iam ch serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com:objectViewer gs://artifacts."$PROJECT".appspot.com
 fi
