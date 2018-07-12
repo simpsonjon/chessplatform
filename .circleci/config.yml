@@ -7,7 +7,14 @@ jobs:
     steps: 
       - checkout:
           path: ~/project/
+      - restore_cache:
+          keys:
+            - api-dependencies-{{ checksum "package.json" }}
       - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: api-dependencies-{{ checksum "package.json" }}
       - run: npm test
   chess-test:
     docker:
@@ -16,7 +23,14 @@ jobs:
     steps: 
       - checkout:
           path: ~/project/
+      - restore_cache:
+          keys:
+            - chess-dependencies-{{ checksum "package.json" }}
       - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: chess-dependencies-{{ checksum "package.json" }}
       - run: npm test
   auth-test:
     docker:
@@ -25,7 +39,14 @@ jobs:
     steps: 
       - checkout:
           path: ~/project/
+      - restore_cache:
+          keys:
+            - auth-dependencies-{{ checksum "package.json" }}
       - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: auth-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
 #CircleCI uses an OR operator on filters
