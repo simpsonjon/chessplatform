@@ -51,7 +51,7 @@ jobs:
   push-gcr:
     docker:
       - image: google/cloud-sdk
-    working_directory: ~/project/3/api/api
+    working_directory: ~/project/3/api
     steps: 
       - checkout:
           path: ~/project/
