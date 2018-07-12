@@ -80,4 +80,5 @@ workflows:
   build-and-test:
     jobs:
       - api-test
-      - push-gcr
+      - chess-test
+      - auth-test
