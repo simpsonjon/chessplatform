@@ -32,7 +32,7 @@ if [ $? -eq 1 ]; then
 	echo "an artfacts.<project>.appspot.com bucket from the gcloud container"
 	echo "push through docker"
 	gcloud iam service-accounts create gcr-role --display-name "GCR SA" && \
-	gsutil iam ch serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com:objectViewer gs://artifacts."$PROJECT".appspot.com
+	gsutil iam ch serviceAccount:gcr-role@"$PROJECT".iam.gserviceaccount.com:admin gs://artifacts."$PROJECT".appspot.com
 fi
 
 if [ ! -f ./auth-key.json ]; then
