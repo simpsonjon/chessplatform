@@ -66,10 +66,10 @@ jobs:
           gcloud auth configure-docker
       - setup_remote_docker
       - run:
-        name: Docker push
-        command: |
-          docker build -t gcr.io/fauxpassproj-dev/api-test .
-          docker push gcr.io/fauxpassproj-dev/api-test
+          name: Docker push
+          command: |
+            docker build -t gcr.io/fauxpassproj-dev/api-test .
+            docker push gcr.io/fauxpassproj-dev/api-test
 
 #CircleCI uses an OR operator on filters
 #In order to only build on tagged releases we need to ignore all branches
